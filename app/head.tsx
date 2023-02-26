@@ -1,11 +1,9 @@
-export default function Head() {
+export default function head() {
     return (
-
         <>
-            <title>ChatGPT</title>
-            <meta content="width=device-width,initial-scale=1" name="viewport" />
-            <link rel="icon" href="" />
+            <title>chatGPT clone</title>
+            <meta content="width=device-width, initial-scale=1" name="viewport" />
+            <link rel="icon" href="favicon.ico" />
         </>
-
     )
 }
