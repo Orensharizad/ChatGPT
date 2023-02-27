@@ -6,6 +6,9 @@ import { useSession } from "next-auth/react"
 import { FormEvent, useState } from "react"
 import { db } from "../firebase"
 import { toast } from "react-hot-toast";
+import ModelSelection from "./ModelSelection"
+import useSWR from 'swr';
+
 
 type Props = {
     chatId: string
@@ -16,13 +19,15 @@ type Props = {
 function ChatInput({ chatId }: Props) {
     const { data: session } = useSession()
     const [prompt, setPropmt] = useState('')
-    const model = 'text-davinchi-003'
+    const { data: model } = useSWR('model', {
+        fallbackData: 'text-davinci-003'
+    })
 
     const sendMsg = async (ev: FormEvent<HTMLFormElement>) => {
         ev.preventDefault()
         if (!prompt) return
         const input = prompt.trim()
-        setPropmt("")
+        setPropmt('')
 
         const msg: Msg = {
             text: input,
@@ -39,23 +44,25 @@ function ChatInput({ chatId }: Props) {
         const notification = toast.loading('ChatGPT is thinking ...')
 
         await fetch('/api/askQuestion', {
-            method: "POST",
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-type': 'application/json'
             },
             body: JSON.stringify({
                 prompt: input,
                 chatId,
                 model,
                 session
-            },
-            )
+            })
         }).then(() => {
             toast.success('ChatGPT has responded', {
                 id: notification
             })
 
         })
+            .catch(err => {
+                console.log('err:', err)
+            })
 
 
 
@@ -75,8 +82,8 @@ function ChatInput({ chatId }: Props) {
                     <PaperAirplaneIcon className="h-4 w-4 -rotate-45" />
                 </button>
             </form>
-            <div>
-
+            <div className="md:hidden">
+                <ModelSelection />
             </div>
         </div>
     )

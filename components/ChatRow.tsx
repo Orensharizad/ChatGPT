@@ -1,4 +1,3 @@
-'use client'
 
 import { ChatBubbleLeftIcon, TrashIcon } from "@heroicons/react/24/outline"
 import { collection, deleteDoc, doc } from "firebase/firestore"
@@ -40,7 +39,7 @@ function ChatRow({ id }: Props) {
     return (
         <Link className={`chatRow justify-center ${active && 'bg-gray-700/50'}`} href={`/chat/${id}`}>
             <ChatBubbleLeftIcon className="h-5 w-5" />
-            <p className="flex-1 hidden md:inline-flex truncare">{messages?.docs[messages?.docs.length - 1]?.data().text || 'New Chat'}</p>
+            <p className="flex-1 hidden md:inline-flex truncate">{messages?.docs[messages?.docs.length - 1]?.data().text || 'New Chat'}</p>
             <TrashIcon onClick={onRemoveChat} className="h-5 w-5 text-gray-700 hover:text-red-700" />
 
         </Link>
