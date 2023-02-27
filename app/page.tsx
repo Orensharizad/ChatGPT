@@ -1,12 +1,15 @@
 import React from 'react'
 import { BoltIcon, ExclamationTriangleIcon, SunIcon } from '@heroicons/react/24/outline'
+import NewChat from '../components/NewChat'
 
 
 function HomePage() {
     return (
-        <div className='flex flex-col items-center justify-center text-white h-screen px-2'>
-
-            <h1 className='text-5xl font-bold mb-20'>ChatGpt</h1>
+        <div className='flex flex-col items-center justify-center text-white lg:min-h-screen px-2'>
+            <h1 className='text-5xl font-bold lg:mb-20 mb-5'>ChatGpt</h1>
+            <div className='lg:hidden mb-5'>
+            <NewChat   />
+            </div>
             <div>
                 <div className='flex space-x-2 text-center '>
 
@@ -35,7 +38,6 @@ function HomePage() {
                             <p className='infoText'>"Hot Toast notifications when CharGPT thinking"</p>
                         </div>
                     </div>
-
                     {/* Card 3 */}
                     <div>
                         <div className='flex flex-col items-center justify-center mb-5'>
@@ -51,6 +53,7 @@ function HomePage() {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }
