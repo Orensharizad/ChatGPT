@@ -1,4 +1,4 @@
-
+'use client'
 import { ChatBubbleLeftIcon, TrashIcon } from "@heroicons/react/24/outline"
 import { collection, deleteDoc, doc } from "firebase/firestore"
 import { useSession } from "next-auth/react"
@@ -13,6 +13,7 @@ type Props = {
 }
 
 function ChatRow({ id }: Props) {
+    console.log('id: ', id);
     const pathname = usePathname()
     const router = useRouter()
     const { data: session } = useSession()

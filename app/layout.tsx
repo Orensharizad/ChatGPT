@@ -1,3 +1,4 @@
+
 import { SessionProvider } from '../components/SessionProvider'
 import SideBar from '../components/SideBar'
 import Login from '../components/Login';
@@ -31,7 +32,6 @@ export default async function RootLayout({
                 <SideBar />
               </div>
               <ClientProvider />
-
               <div className='bg-[#343541] flex-1'>{children}</div>
             </div>
 
